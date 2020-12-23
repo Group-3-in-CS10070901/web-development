@@ -12,7 +12,6 @@ moment = Moment()
 db = SQLAlchemy()
 
 login_manager = LoginManager()
-login_manager.login_message = '请登录！'
 login_manager.login_view = 'auth.login'
 
 
@@ -32,8 +31,5 @@ def create_app(config_name):
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
-
-    from .message import message as message_blueprint
-    app.register_blueprint(message_blueprint,url_prefix='/message')
 
     return app
