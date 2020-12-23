@@ -29,22 +29,31 @@ button:focus {
 }
 
 .logo {
-    width: 300px;
-    height: 40px;
+    width: 210px;
+    height: 70px;
     overflow: hidden;
     padding-left: 40px;
+    margin-top: -15px;
+    padding-bottom: 5px;
 }
 
 .userimg {
     height: 40px;
     width: 40px;
-    padding-right: 40px;
+    margin-right: 40px;
+    margin-top: 15px;
+    margin-bottom: 0px;
 }
 
-.nav .navbar {
+.navbar .navbar-default {
+    height: 40px;
+    padding-bottom: -20px;
+}
+
+.nav .navbar-nav {
     position: relative;
-    min-height: 50px;
-    margin-bottom: 1px;
+    height: 30px;
+    padding-top: 20px;
     background-color: #ffffff00;
     border: 1px solid transparent;
 }
@@ -66,11 +75,11 @@ button:focus {
 .page-footer {
     background: #802b4e33;
     color: #802b4e;
+    bottom: 0px;
     padding: 50px 0, 0;
     height: 55px;
     width: 100%;
     position: absolute;
-    bottom: 0px;
 }
 
 .footer-bottom {
@@ -80,9 +89,11 @@ button:focus {
 
 .navbar {
     font-size: 15pt;
-    min-height: 50px;
+    min-height: 70px;
+    margin-top: auto;
+    margin-bottom: auto;
     border: 1px solid transparent;
-    background-color: #802b4e33;
+    background-color: #ffffff98;
 }
 
 .nav-header .brand-img {
@@ -90,6 +101,7 @@ button:focus {
     height: 40px;
     overflow: hidden;
     padding-left: 40px;
+    padding-top: 0px;
 }
 
 .form-container {
@@ -135,7 +147,6 @@ button:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(250, 248, 248, 0.6);
     padding: 10px;
     text-align: center;
     max-width: 888px;

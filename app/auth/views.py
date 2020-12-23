@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS=set(['txt','pdf','png','jpg','jpeg','gif'])
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
 
-
+#替换图片
 def delete_pic(dirpath,userid):
     for item in os.listdir(dirpath):
         for ext in ALLOWED_EXTENSIONS:
@@ -34,7 +34,7 @@ def edit_pic(filename):
     cv2.imwrite(filename,dst2)
     return 
 
-
+#若未认证
 @auth.before_app_request
 def before_request():
     if current_user.is_authenticated \
@@ -44,12 +44,12 @@ def before_request():
             and request.endpoint != 'static':
         return redirect(url_for('auth.unconfirmed'))
 
-#未认证
+#跳转至需要验证
 @auth.route('/unconfirmed')
 def unconfirmed():
     if current_user.is_anonymous or current_user.confirmed:
         return redirect(url_for('main.index'))
-    return render_template('auth/unconfirmed.html')
+    return render_template('auth/email_confirm.html')
 
 #登录路由
 @auth.route('/login', methods=['GET', 'POST'])
@@ -64,7 +64,9 @@ def login():
             if next is None or not next.startswith('/'):
                 next = url_for('main.index')
             return redirect(next)
-        flash('错误的邮箱或密码。')
+        else:
+            flash('错误的邮箱或密码。')
+            return redirect(url_for('auth.login'))
     return render_template('auth/login.html')
 
 #登出
@@ -73,7 +75,7 @@ def login():
 def logout():
     logout_user()
     flash('您已成功退出！')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth.login'))
 
 #注册路由
 @auth.route('/register', methods=['GET', 'POST'])
@@ -159,15 +161,51 @@ def detailed_information():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('main.index'))
-    return render_template('detailed_information.html')
-'''
+    return render_template('auth/detailed_information.html')
+
 #修改个人信息
-@login_required
 @auth.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
 def edit_profile():
-    user = User.query.filter_by(id=user_id).first()
-    return render_template('edit_profile.html')
-'''   
+    user = current_user._get_current_object()
+    if request.method=='POST':
+        app = current_app._get_current_object()
+        main_image = request.files['main_image']
+        user = current_user._get_current_object()
+
+
+        user.nickname = request.form['nickname']
+        user.gender = request.form['gender']
+        user.height = request.form['height']
+        user.size = request.form['size']
+        user.education = request.form['education']
+        user.occupation = request.form['occupation']
+        user.love_state = request.form['love_state']
+        user.sexuality = request.form['sexuality']
+        user.date_of_birth = request.form['date_of_birth']
+        user.salary = request.form['salary']
+        user.location = str(request.form['province'] + ' ' + request.form['city'])
+        user.contact_information = request.form['contact_information']
+        user.about_me = request.form['about_me']
+        user.occupation=request.form['occupation']
+        user.constellation = request.form['constellation']
+        user.age = int(2020 - int(user.date_of_birth[0:4]))
+        
+        if allowed_file(main_image.filename):
+            user.main_image_url = 'main_image/' + str(current_user.id) + '.' + str(main_image.filename.rsplit('.', 1)[1])
+            delete_pic(app.config['UPLODE_FOLDER']+'main_image/',current_user.id)
+            main_image.save(app.config['UPLODE_FOLDER'] + user.main_image_url)
+            edit_pic(app.config['UPLODE_FOLDER']+user.main_image_url)
+            flash('上传成功！')
+        else:
+            flash('上传图片不符合类型！')
+            return redirect(url_for('auth.edit_profile'))
+
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('main.homepage_information', user_id=current_user.id))
+    return render_template('auth/edit_profile.html',user=user)
+ 
 
 
 
@@ -202,20 +240,22 @@ def password_reset_request():
             flash('一封重置密码的电子邮件已发送至您的邮箱！')
             return redirect(url_for('auth.login'))
         flash('该邮箱未注册！')
-    return render_template('auth/reset_password.html', form=form)
+    return render_template('auth/forget_password.html')
+
 
 #重置密码时电子邮件中的路由
 @auth.route('/reset/<token>', methods=['GET', 'POST'])
 def password_reset(token):
-    if not current_user.is_anonymous:
-        return redirect(url_for('main.index'))
-    form = PasswordResetForm()
-    if form.validate_on_submit():
-        if User.reset_password(token, form.password.data):
+    if request.method == "POST":
+        if User.reset_password(token, request.form['new_password']):
             db.session.commit()
-            flash('Your password has been updated.')
+            flash('您的密码已重置')
             return redirect(url_for('auth.login'))
         else:
+            flash('无效或过期的连接！')
             return redirect(url_for('main.index'))
-    return render_template('auth/reset_password.html', form=form)
+    return render_template('auth/reset_password.html',token=token)
+
+
+
 

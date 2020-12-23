@@ -12,7 +12,7 @@ class Config:
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'tj_findlove@163.com'
     MAIL_PASSWORD = 'PBEPIXUTHMWHMGGP'
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
+    FLASKY_MAIL_SUBJECT_PREFIX = '[世济嘉缘]'
     FLASKY_MAIL_SENDER = '世济嘉缘<tj_findlove@163.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
 
@@ -25,28 +25,12 @@ class Config:
     def init_app(app):
         pass
 
-
+#数据库路径
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
-
-
-class TestingConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-        'sqlite://'
-
-
-class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-
+        'sqlite:///' + os.path.join(basedir, 'database.sqlite')
 
 config = {
-    'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'production': ProductionConfig,
-
     'default': DevelopmentConfig
 }
