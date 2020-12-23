@@ -19,7 +19,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #上传文件路径
-    UPLODE_FOLDER = basedir+"/app/static/main_image/"
+    UPLODE_FOLDER = basedir+"/app/static/"
 
     @staticmethod
     def init_app(app):

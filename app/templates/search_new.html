@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <! --[IF IT IE9]>
+    <script src="desktop/bootstrap-3.3.4/js/html5shiv.min.js"></script>
+    <script src="desktop/bootstrap-3.3.4/js/respond.min.js"></script>
+    <link rel="stylesheet" href="../static/css/search.css">
+    <style type="text/css">
+        #p1 {
+            font: bolder 24px 楷体;
+        }
+        
+        .h4 {
+            font-family: 楷体;
+        }
+        
+        .h3 {
+            font: color="green"
+        }
+        
+        .h1 {
+            font-family: 楷体;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar navbar-default ">
+            <div class="navbar-header center-block ">
+                <a class="navbar-brand brand-img " href="# ">
+                    <img alt="Brand " src="{{ url_for('static',filename='img/picture.jpg') }}" class="logo ">
+                </a>
+            </div>
+            <ul class="nav navbar-nav" style="display: inline-block;float: none;">
+                <li> <a href="# "><span class=" glyphicon glyphicon-home "></span>首页</a></li>
+            </ul>
+            <ul class="nav navbar-nav " style="display: inline-block;float: none;">
+                <li><a href="# "><span class=" glyphicon glyphicon-search "></span>搜索</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right " style="display: inline-block;float: none;">
+
+                <li class="dropdown ">
+                    <a href="# " data-toggle="dropdown " class="dropdown-toggle "><span class=" glyphicon glyphicon-user "></span><span class="caret "></span>
+          </a>
+                    <ul class="dropdown-menu ">
+                        {%if username%}
+                        <li>
+                            <a href="# ">修改信息</a>
+                        </li>
+                        <li>
+                            <a href="# ">私信</a>
+                        </li>
+                        {% else %}
+
+                        <li>
+                            <a href="# ">登录</a>
+                        </li>
+
+
+                        {% endif %}
+                    </ul>
+
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="overlay">
+            <div class="examples">
+                <form name="search" method="post" action="{{url_for('main.search')}}">
+
+                    <div class="tile">
+                        <p id="p1">搜索意中人</p>
+                        </h1>
+                    </div>
+
+                    <div class="location" id="search1">
+
+                        <div class=edu>
+                            <h4 class="h4">基本条件</h4>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="gender" id="inputinfo0" class="form-control">
+                      <option selected>性别</option>
+                      <option>不限</option>
+                      <option>女</option>
+                      <option>男</option>
+                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="sexuality" id="inputinfo0" class="form-control">
+                     <option selected>取向</option>
+                     <option>男</option>
+                     <option>女</option>
+                     <option>双性恋</option>
+                   </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="age_type" id="inputinfo0" class="form-control">
+                     <option selected>年龄</option>
+                     <option>年龄不限</option>
+                     <option>18岁以下</option>
+                     <option>18-25岁</option>
+                     <option>25-30岁</option>
+                     <option>30-40岁</option>
+                     <option>40-50岁</option>
+                     <option>50岁以上</option>
+                   </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="height_type" id="inputinfo1" class="form-control">
+                     <option selected>身高</option>
+                     <option>身高不限</option>
+                     <option>150及以下</option>
+                     <option>150-160cm</option>
+                     <option>160-170cm</option>
+                     <option>170-180cm</option>
+                     <option>180以上</option>
+                   </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="size" id="inputinfo1" class="form-control">
+                     <option selected>体型</option>
+                     <option>体型不限</option>
+                     <option>偏瘦</option>
+                     <option>中等</option>
+                     <option>微胖</option>
+                   </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="income_type" id="inputinfo1" class="form-control">
+                      <option selected>收入</option>
+                      <option>不限</option>
+                      <option>5000以下</option>
+                      <option>5000-10000</option>
+                      <option>10000-20000</option>
+                      <option>20000-50000</option>
+                      <option>50000以上</option>
+                      <option>马云</option>
+                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="Education1">
+
+                        <div class="edu2">
+                            <h4 class="h4">高级搜索</h4>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="education" id="inputinfo3" class="form-control">
+                      <option selected>教育经历</option>
+                      <option>不限</option>
+                      <option>高中及以下</option>
+                      <option>大学本科</option>
+                      <option>硕士生</option>
+                      <option>博士生及以上</option>
+                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="occupation" id="inputinfo2" class="form-control ">
+                      <option selected>职业</option>
+                      <option>不限</option>
+                      <option>程序猿（媛）</option>
+                      <option>教育</option>
+                      <option>医疗</option>
+                      <option>金融</option>
+                      <option>学生</option>
+                      <option>自由职业</option>
+                      <option>美少女</option>
+                      <option>霸道总裁</option>
+                      <option>视频博主</option>
+                      <option>超级英雄</option>
+                      <option>纸片人</option>
+                      <option>冒险者</option>
+                      <option>修仙者</option>
+                      <option>演员</option>
+                      <option>其他</option>
+                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="constellation" id="inputinfo2" class="form-control">
+                      <option selected>星座</option>
+                      <option>星座不限</option>
+                      <option>水瓶座</option>
+                      <option>双鱼座</option>
+                      <option>白羊座</option>
+                      <option>金牛座</option>
+                      <option>双子座</option>
+                      <option>巨蟹座</option>
+                      <option>狮子座</option>
+                      <option>处女座</option>
+                      <option>天秤座</option>                      
+                      <option>天蝎座</option>
+                      <option>射手座</option>
+                      <option>魔羯座</option>
+                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <select type="text" name="love_state" id="inputinfo5" class="form-control">
+                      <option selected>婚姻状况</option>
+                      <option>婚姻状况不限</option>
+                      <option>离异</option>
+                      <option>未婚</option>
+                      <option>丧偶</option>
+                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button2 form-group">
+                        <div class="col-sm-offset-2 col-sm-10 bububu">
+                            <button type="submit" class="btn btn-default">搜索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="recommend">
+        <h1 class="h1" style="color: rgb(199, 65, 154);">
+            <font size=28px;>为您推荐</font>
+        </h1>
+    </div>
+    <div class="slide1">
+        <div class="overlay1">
+            <div class="headimg">
+                <img src="../static/img/蕾姆.jpeg" width=100px height=150px;>
+            </div>
+            <div class="nickname">
+                <h4 class="nickname2">昵称</h4>
+            </div>
+            <div class="gender2">
+                <h4>性别</h4>
+            </div>
+            <div class="describe">
+                <h4>自我介绍</h4>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="slide2">
+        <div class="overlay1">
+            <img src="../static/img/蕾姆.jpeg" width=100px height=150px;>
+        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍</h4>
+        </div>
+    </div>
+
+    </div>
+    <div class="slide3">
+        <div class="overlay1">
+            <img src="../static/img/蕾姆.jpeg" width=100px height=150px;>
+        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍</h4>
+        </div>
+    </div>
+    <div class="slide4">
+        <div class="overlay1">
+            <img src="../static/img/蕾姆.jpeg" width=100px height=150px;>
+        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍</h4>
+        </div>
+    </div>
+    <div class="page">
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+
+    <script src="../static/js/bubbly-bg.js"></script>
+    <script>
+        bubbly();
+        let configs = [{
+            colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+            bubbleFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+        }, {
+            colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+            bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+        }, {
+            colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+            blur: 1,
+            compose: "source-over",
+            bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+        }];
+    </script>
+</body>
+
+</html>

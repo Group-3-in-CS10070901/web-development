@@ -1,65 +1,62 @@
+
+.overlay {
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+    top: 50px;
+    margin-left: 90px;
+   
+    background: rgba(250, 248, 248, 0.6);
+    padding: 10px;
+    text-align: center;
+    width: 888px;
+}
+.slide{
+    margin-left: 90px;
+    margin-top:100px;
+}
 .overlay1 {
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
     background: rgba(250, 248, 248, 0.6);
     padding: 10px;
     width: 400px;
-    height: 170px;
+    height:170px;
 }
-
-.recommend1 {
-    margin-left: 180px;
+.nickname{
+    margin-left:120px;
+    margin-top:-150px;
 }
-
-.nickname {
-    margin-left: 170px;
-    margin-top: -150px;
-}
-
-.nickname2 {
+.nickname2{
     text-decoration-color: rgba(218, 141, 205, 0.3);
 }
-
-.gender2 {
-    margin-left: 170px;
+.gender2{
+    margin-left:120px;
 }
-
-.describe {
-    word-wrap: break-word;
-    word-break: normal;
-    margin-left: 170px;
+.describe{
+    margin-left:120px;
 }
-
-.slide1 {
-    margin-left: -165px;
-    margin-top: 50px;
-    width: 400px;
+.slide1{
+    margin-left:185px;
+    margin-top:50px;
+    width:400px;
 }
-
-.slide2 {
+.slide2{
+    
     margin-left: 650px;
-    margin-top: -170px;
-    width: 400px;
+    margin-top:-170px;
+    width:400px;
 }
-
-.slide3 {
-    margin-top: 100px;
-    margin-left: 185px;
-    width: 400px;
+.slide3{
+    margin-top:100px;
+    margin-left:185px;
+    width:400px; 
 }
-
-.slide4 {
-    margin-top: -150px;
-    margin-left: 650px;
-    width: 400px;
+.slide4{
+    margin-top:-120px;
+    margin-left:650px;
+    width:400px; 
 }
-
-.slide5 {
-    margin-left: 182px;
-}
-
 .overlay h3 {
     font: 24px;
-    color: rgba(218, 141, 205, 0.3)
+    color:rgba(218, 141, 205, 0.3)
 }
 
 .examples {
@@ -70,14 +67,12 @@
 .example {
     width: 50%;
 }
-
-.examples {
+.examples{
     margin-top: 30px;
     margin-bottom: 40px;
     margin-left: 20px;
-    margin-right: 20px;
+    margin-right:20px;
 }
-
 .example img {
     cursor: pointer;
     display: block;
@@ -88,94 +83,85 @@
 .example img:hover {
     opacity: 0.8;
 }
-
-.checkbox {
-    float: none;
-    margin-left: 10px;
-    margin-right: 90px;
+.checkbox { 
+    float: none; 
+    margin-left: 10px; 
+    margin-right:90px; 
 }
-
-.button {
-    margin-left: 10px;
-    margin-right: 60px;
+.button { 
+    margin-left: 10px; 
+    margin-right:60px; 
 }
-
-.button2 {
-    margin-left: 350px;
-    margin-right: 160px;
-    margin-top: 40px;
+.button2 { 
+    margin-left: 350px; 
+    margin-right:160px;
+    margin-top: 40px; 
     margin-bottom: 10px;
 }
-
-.location {
-    height: 100px;
-    width: 888px;
-    background-color: rgba(100, 120, 240, 0.2);
-    border-radius: 30px;
+.location{
+    height:100px;
+    width:888px;
+    background-color: rgba(100,120,240,0.2);
+    border-radius:30px;
 }
-
-.education {
-    height: 100px;
-    width: 888px;
+.education{
+    height:100px;
+    width:888px;
     background-color: rgba(218, 141, 205, 0.2);
-    border-radius: 30px;
+    border-radius:30px;
 }
-
-#inputinfo3 {
-    border: none;
-    width: 200px;
-    margin-left: 112px;
+#inputinfo3  {
+    border:none;
+    width:200px;
+    margin-left:112px;
     margin-top: 1px;
-    background-color: rgba(218, 141, 205, 0.3);
+    background-color:rgba(218, 141, 205, 0.3);
 }
-
-#inputinfo2 {
-    border: none;
-    width: 200px;
-    background-color: rgba(218, 141, 205, 0.3);
+#inputinfo2  {
+    border:none;
+    width:200px;
+    background-color:rgba(218, 141, 205, 0.3);
+    
 }
-
-#inputinfo1 {
-    border: none;
-    width: 200px;
-    margin-left: 112px;
+#inputinfo1  {
+    border:none;
+    width:200px;
+    margin-left:112px;
     margin-top: 1px;
-    background-color: rgba(100, 120, 240, 0.3);
+    background-color: rgba(100,120,240,0.3);
 }
-
-#inputinfo0 {
-    border: none;
-    width: 200px;
-    background-color: rgba(100, 120, 240, 0.3);
+#inputinfo0  {
+    border:none;
+    width:200px;
+    background-color: rgba(100,120,240,0.3);
+    
 }
-
-.edu {
+.edu{
     margin-left: 20px;
-    margin-top: 8px;
+    margin-top:8px;
     float: left;
     text-align: center;
 }
-
-.page {
-    width: 250px;
-    margin-left: 500px;
-    margin-top: 150px;
+.page{
+    width:250px;
+    margin-left:500px;
+    margin-top:150px;
 }
-
-.recommend {
+.recommend{
     width: 280px;
-    height: 100px;
-    margin-left: 520px;
-    margin-top: 150px;
+    height:100px;
+    margin-left:520px;
+    margin-top:150px;
 }
-
 a {
     color: #e0b2d9;
 }
-
-
 /*下面是导航栏的css*/
-
+.container{
+    position:fixed;
+    background-color: rgba(0, 0, 0, 0);
+    top:0;
+}
 body {
     font-family: 'Lato', sans-serif;
     font-size: 14px;

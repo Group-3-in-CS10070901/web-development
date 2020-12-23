@@ -1,9 +1,380 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="zh">
 
-{% block title %}Flasky{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-{% block page_content %}
-<div class="page-header">
-    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
-</div>
-{% endblock %}
+    <! --[IF IT IE9]>
+    <script src="desktop/bootstrap-3.3.4/js/html5shiv.min.js"></script>
+    <script src="desktop/bootstrap-3.3.4/js/respond.min.js"></script>
+    <link rel="stylesheet" href="../static/css/homepage.css">
+    <style type="text/css">
+        #p1 {
+            font: bolder 24px 楷体;
+        }
+        
+        .h4 {
+            font-family: 楷体;
+        }
+        
+        .h3 {
+            font: color="green"
+        }
+        
+        .h1 {
+            font-family: 楷体;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar navbar-default ">
+            <div class="navbar-header center-block ">
+                <a class="navbar-brand brand-img " href="# ">
+                    <img alt="Brand " src="{{ url_for('static',filename='img/picture.jpg') }}" class="logo ">
+                </a>
+            </div>
+            <ul class="nav navbar-nav" style="display: inline-block;float: none;">
+                <li> <a href="# "><span class=" glyphicon glyphicon-home "></span>首页</a></li>
+            </ul>
+            <ul class="nav navbar-nav " style="display: inline-block;float: none;">
+                <li><a href="# "><span class=" glyphicon glyphicon-search "></span>搜索</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right " style="display: inline-block;float: none;">
+
+                <li class="dropdown ">
+                    <a href="# " data-toggle="dropdown " class="dropdown-toggle "><span class=" glyphicon glyphicon-user "></span><span class="caret "></span>
+          </a>
+                    <ul class="dropdown-menu ">
+                        {%if username%}
+                        <li>
+                            <a href="# ">修改信息</a>
+                        </li>
+                        <li>
+                            <a href="# ">私信</a>
+                        </li>
+                        {% else %}
+
+                        <li>
+                            <a href="# ">登录</a>
+                        </li>
+
+
+                        {% endif %}
+                    </ul>
+
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="recommend">
+        <h1 class="h1" style="color: rgb(199, 65, 154);">
+            <font size=28px;>为您推荐</font>
+        </h1>
+    </div>
+    <div class="slide1">
+        {%if length>=1 %}
+        <div class="overlay1">
+            <div class="headimg">
+                {% if users[0].main_image_url %}
+                <img src="{{url_for('static',filename=users[0].main_image_url)}}" width=100px height=150px;>
+                {% else %}
+                <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+                {% endif %}
+            </div>
+            <div class="nickname">
+                <h4 class="nickname2">昵称:{{users[0].nickname}}</h4>
+            </div>
+            <div class="gender2">
+                <h4>性别:{{users[0].gender}}</h4>
+            </div>
+            <div class="describe">
+                <h4>自我介绍:{{users[0].about_me}}</h4>
+            </div>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+    </div>
+    <div class="slide2">
+        {%if length>=2 %}
+        <div class="overlay1">
+            {% if users[1].main_image_url %}
+            <img src="{{url_for('static',filename=users[1].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[1].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[1].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[1].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+    </div>
+    <div class="slide3">
+        {%if length>=3 %}
+        <div class="overlay1">
+            {% if users[2].main_image_url %}
+            <img src="{{url_for('static',filename=users[2].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[2].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[2].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[2].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+    <div class="slide4">
+        {%if length>=4 %}
+        <div class="overlay1">
+            {% if users[3].main_image_url %}
+            <img src="{{url_for('static',filename=users[3].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[3].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[3].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[3].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+
+
+    <div class="recommend">
+        <h1 class="h1" style="color: rgb(169, 113, 196);">
+            <font size=28px;>点赞飙升</font>
+        </h1>
+    </div>
+    <div class="slide1">
+        {%if length>=5 %}
+        <div class="overlay1">
+            <div class="headimg">
+                {% if users[4].main_image_url %}
+                <img src="{{url_for('static',filename=users[4].main_image_url)}}" width=100px height=150px;>
+                {% else %}
+                <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+                {% endif %}            </div>
+            <div class="nickname">
+                <h4 class="nickname2">昵称:{{users[4].nickname}}</h4>
+            </div>
+            <div class="gender2">
+                <h4>性别:{{users[4].gender}}</h4>
+            </div>
+            <div class="describe">
+                <h4>自我介绍:{{users[4].about_me}}</h4>
+            </div>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+    </div>
+    <div class="slide2">
+        {%if length>=6 %}
+        <div class="overlay1">
+            {% if users[5].main_image_url %}
+            <img src="{{url_for('static',filename=users[5].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[5].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[5].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[5].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+    </div>
+    <div class="slide3">
+        {%if length>=7 %}
+        <div class="overlay1">
+            {% if users[6].main_image_url %}
+            <img src="{{url_for('static',filename=users[6].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[6].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[6].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[6].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+    <div class="slide4">
+        {%if length>=8 %}
+        <div class="overlay1">
+            {% if users[7].main_image_url %}
+            <img src="{{url_for('static',filename=users[7].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[7].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[7].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[7].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+
+    <div class="recommend">
+        <h1 class="h1" style="color: rgb(105, 65, 199);">
+            <font size=28px;>最多点击</font>
+        </h1>
+    </div>
+    <div class="slide1">
+        {%if length>=9 %}
+        <div class="overlay1">
+            <div class="headimg">
+                {% if users[8].main_image_url %}
+                <img src="{{url_for('static',filename=users[8].main_image_url)}}" width=100px height=150px;>
+                {% else %}
+                <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+                {% endif %}            </div>
+            <div class="nickname">
+                <h4 class="nickname2">昵称:{{users[8].nickname}}</h4>
+            </div>
+            <div class="gender2">
+                <h4>性别:{{users[8].gender}}</h4>
+            </div>
+            <div class="describe">
+                <h4>自我介绍:{{users[8].about_me}}</h4>
+            </div>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+    </div>
+    <div class="slide2">
+        {%if length>=10 %}
+        <div class="overlay1">
+            {% if users[9].main_image_url %}
+            <img src="{{url_for('static',filename=users[9].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[9].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[9].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[9].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+
+    </div>
+    <div class="slide3">
+        {%if length>=11 %}
+        <div class="overlay1">
+            {% if users[10].main_image_url %}
+            <img src="{{url_for('static',filename=users[10].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[10].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[10].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[10].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+    <div class="slide4">
+        {%if length>=12 %}
+        <div class="overlay1">
+            {% if users[11].main_image_url %}
+            <img src="{{url_for('static',filename=users[11].main_image_url)}}" width=100px height=150px;>
+            {% else %}
+            <img src="{{url_for('static',filename='main_image/0.jpg')}}" width=100px height=150px;>
+            {% endif %}        </div>
+        <div class="nickname">
+            <h4 class="nickname2">昵称:{{users[11].nickname}}</h4>
+        </div>
+        <div class="gender2">
+            <h4>性别:{{users[11].gender}}</h4>
+        </div>
+        <div class="describe">
+            <h4>自我介绍:{{users[11].about_me}}</h4>
+        </div>
+        {% else %} {% endif %}
+    </div>
+    <div class="page">
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+    <script src="../static/js/bubbly-bg.js"></script>
+    <script>
+        bubbly();
+        let configs = [{
+            colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+            bubbleFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+        }, {
+            colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+            bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+        }, {
+            colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+            blur: 1,
+            compose: "source-over",
+            bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+        }];
+    </script>
+</body>
+
+</html>
